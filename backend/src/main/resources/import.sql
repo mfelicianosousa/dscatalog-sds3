@@ -1,9 +1,9 @@
-INSERT INTO tb_category(name) VALUES ('Books');
-INSERT INTO tb_category(name) VALUES ('Electronics');
-INSERT INTO tb_category(name) VALUES ('Computers');
-INSERT INTO tb_category(name) VALUES ('Som');
-INSERT INTO tb_category(name) VALUES ('Videos');
-INSERT INTO tb_category(name) VALUES ('Celulares');
-INSERT INTO tb_category(name) VALUES ('Notebooks');
-INSERT INTO tb_category(name) VALUES ('Memórias');
-INSERT INTO tb_category(name) VALUES ('Hds, ssd');
+INSERT INTO tb_category(name, created_At) VALUES ('Books',now()) ;
+INSERT INTO tb_category(name, created_At) VALUES ('Electronics',now());
+INSERT INTO tb_category(name, created_At) VALUES ('Computers',now());
+INSERT INTO tb_category(name, created_At) VALUES ('Som',now());
+INSERT INTO tb_category(name, created_At) VALUES ('Videos',now());
+INSERT INTO tb_category(name, created_At) VALUES ('Celulares',now());
+INSERT INTO tb_category(name, created_At) VALUES ('Notebooks',now());
+INSERT INTO tb_category(name, created_At) VALUES ('Memórias',now());
+INSERT INTO tb_category(name, created_At) VALUES ('Hds, ssd',now());
