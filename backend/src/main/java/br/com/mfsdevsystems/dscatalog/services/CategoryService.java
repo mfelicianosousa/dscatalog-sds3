@@ -9,6 +9,8 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,27 +27,6 @@ public class CategoryService {
 	private CategoryRepository repository ;
 	
 	@Transactional(readOnly=true)
-	public List< CategoryDTO > findAll(){
-		
-		List< Category > list = repository.findAll();
-		
-		// expressão de alta ordem Lambda
-		
-		return list.stream().map(x -> new CategoryDTO( x )).collect(Collectors.toList());
-		/*
-		List< CategoryDTO > listDto = new ArrayList<>();
-		for ( Category category : list ) {
-			listDto.add( new CategoryDTO( category )) ;
-		}
-		
-		return listDto ;
-		*/
-		
-		
-	}
-
-	
-	@Transactional(readOnly=true)
 	public CategoryDTO findById(Long id ){
 		
 		Optional<Category> obj = repository.findById( id );
@@ -54,6 +35,15 @@ public class CategoryService {
 		return new CategoryDTO( entity ) ;
 	}
 
+	@Transactional(readOnly=true)
+	public Page<CategoryDTO> FindAllPage(PageRequest pageRequest) {
+		
+		Page< Category > list = repository.findAll(pageRequest);
+		
+		// expressão de alta ordem Lambda
+		return list.map(x -> new CategoryDTO( x ));
+	
+	}
 
 	@Transactional
 	public CategoryDTO insert(CategoryDTO dto) {
@@ -92,4 +82,5 @@ public class CategoryService {
 		}
 		
 	}
+	
 }
