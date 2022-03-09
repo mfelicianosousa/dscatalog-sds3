@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,7 +38,7 @@ public class ProductService {
 		
 		return new ProductDTO( entity, entity.getCategories() ) ;
 	}
-
+/*
 	@Transactional(readOnly=true)
 	public Page<ProductDTO> FindAllPage(PageRequest pageRequest) {
 		
@@ -48,7 +48,18 @@ public class ProductService {
 		return list.map(x -> new ProductDTO( x ));
 	
 	}
-
+*/
+	@Transactional(readOnly=true)
+	public Page<ProductDTO> FindAllPage(Pageable pageable) {
+		
+		Page< Product > list = repository.findAll( pageable );
+		
+		// expressão de alta ordem Lambda
+		return list.map(x -> new ProductDTO( x ));
+	
+	}
+	
+	
 	@Transactional
 	public ProductDTO insert(ProductDTO dto) {
 		Product entity = new Product();
