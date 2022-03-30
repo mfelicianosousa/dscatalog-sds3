@@ -1,5 +1,8 @@
 package br.com.mfsdevsystems.dscatalog.dto;
 
+import br.com.mfsdevsystems.dscatalog.services.validation.UserInsertValid;
+
+@UserInsertValid
 public class UserInsertDTO extends UserDTO {
 	
 	private static final long serialVersionUID = 1L;
